@@ -2,14 +2,17 @@ package userx;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 public class ExerciseOneTests {
 
 	@Test 
-	public void testreadSecretMessageFromAgency()
+	public void testreadSecretMessageFromAgency() throws IOException
 	{
-		assertEquals("error in Reading File", "80", SecretMessageReader.ReadLine());
+		assertEquals("error in Reading File", "80", SecretMessageReader.ReadLine("SecretMessage.txt",1));
+		assertEquals("Error in Readline","Every Good Boy Does Fine", SecretMessageReader.ReadLine("SecretMessage.txt", 2));
 	}
 
 	/*

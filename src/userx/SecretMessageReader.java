@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
+
 public class SecretMessageReader {
 
 
@@ -15,13 +16,16 @@ public class SecretMessageReader {
 	{
 
 	}	
-    /* Reads a line in the file given the line number and filename 
+    /* 
+     * Reads a line in the file given the line number and filename 
 	 * 
 	 */
-	public static String ReadLine(String filename,int lineNum) throws IOException{
+	public static String ReadLine(String filename,int lineNum) throws IOException
+	{
 		String line;
 		int currentLine = 0;
 		BufferedReader br = null;
+		
 		try {
 		    InputStream fis = new FileInputStream(filename.toLowerCase());
 		    InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
@@ -29,13 +33,18 @@ public class SecretMessageReader {
 		}
 		catch(FileNotFoundException e)
 		{	
-			System.out.println("Cannot find file " + e.getMessage());
+			System.out.println("Cannot find file " + e.getMessage());			
 		}
 		
 		while ((line = br.readLine()) != null){
-			if(lineNum == currentLine )
-			  return line;
+			if(lineNum == currentLine ){
+				br.close();
+				return line;
+			}
+			  
+			currentLine++;
 		}
+		br.close();
 		return line;
 		
 	}
